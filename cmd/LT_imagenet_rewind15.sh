@@ -1,1 +1,1 @@
-python open_lth.py lottery --default_hparams=imagenet_resnet_50 --levels=15 --rewinding_steps=15ep --apex_fp16
+python open_lth.py lottery --default_hparams=imagenet_resnet_50 --levels=15 --rewinding_steps=15ep
