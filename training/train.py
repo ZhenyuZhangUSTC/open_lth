@@ -19,6 +19,8 @@ from training import optimizers
 from training import standard_callbacks
 from training.metric_logger import MetricLogger
 
+import torch 
+
 try:
     import apex
     NO_APEX = False
