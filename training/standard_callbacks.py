@@ -49,7 +49,7 @@ def create_eval_callback(eval_name: str, loader: DataLoader, verbose=False):
         def correct(labels, outputs):
             return torch.sum(torch.eq(labels, output.argmax(dim=1)))
 
-        print(min(loader.dataset.targets),max(loader.dataset.targets))
+        print(torch.min(loader.dataset._labels),torch.max(loader.dataset._labels))
         model.eval()
         with torch.no_grad():
             for examples, labels in loader:
