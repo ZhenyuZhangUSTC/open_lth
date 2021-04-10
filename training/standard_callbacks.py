@@ -50,7 +50,6 @@ def create_eval_callback(eval_name: str, loader: DataLoader, verbose=False):
             return torch.sum(torch.eq(labels, output.argmax(dim=1)))
 
         model.eval()
-        print(loader.)
         with torch.no_grad():
             for examples, labels in loader:
                 print(examples.shape, torch.min(labels), torch.max(labels))
