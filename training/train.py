@@ -36,8 +36,9 @@ def train(
     callbacks: typing.List[typing.Callable] = [],
     start_step: Step = None,
     end_step: Step = None
-):
-    print(torch.min(train_loader.dataset._labels),torch.max(train_loader.dataset._labels))
+):     
+    import numpy as np 
+    print(np.min(train_loader.dataset._labels),np.max(train_loader.dataset._labels))
     """The main training loop for this framework.
 
     Args:
