@@ -20,4 +20,4 @@ class Platform(base.Platform):
 
     @property
     def imagenet_root(self):
-        return '/datadrive_c/yucheng/imagenet/'
+        return '/datadrive_c/yucheng/imagenet'

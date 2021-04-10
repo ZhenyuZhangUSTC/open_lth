@@ -53,6 +53,7 @@ def create_eval_callback(eval_name: str, loader: DataLoader, verbose=False):
 
         with torch.no_grad():
             for examples, labels in loader:
+                print(examples.shape)
                 examples = examples.to(get_platform().torch_device)
                 labels = labels.squeeze().to(get_platform().torch_device)
                 output = model(examples)
@@ -68,8 +69,9 @@ def create_eval_callback(eval_name: str, loader: DataLoader, verbose=False):
             torch.distributed.reduce(total_correct, 0, op=torch.distributed.ReduceOp.SUM)
             torch.distributed.reduce(example_count, 0, op=torch.distributed.ReduceOp.SUM)
 
-        print(total_loss)
         print(total_loss.item())
+        print(total_loss)
+
 
         total_loss = total_loss.cpu().item()
         total_correct = total_correct.cpu().item()
