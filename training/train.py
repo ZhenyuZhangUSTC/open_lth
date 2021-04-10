@@ -37,7 +37,7 @@ def train(
     start_step: Step = None,
     end_step: Step = None
 ):
-
+    print(min(train_loader.dataset.targets),max(train_loader.dataset.targets))
     """The main training loop for this framework.
 
     Args:
