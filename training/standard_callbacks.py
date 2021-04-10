@@ -53,22 +53,27 @@ def create_eval_callback(eval_name: str, loader: DataLoader, verbose=False):
 
         with torch.no_grad():
             for examples, labels in loader:
-                print(examples.shape)
+                print(examples.shape, torch.min(labels), torch.max(labels))
                 examples = examples.to(get_platform().torch_device)
                 labels = labels.squeeze().to(get_platform().torch_device)
                 output = model(examples)
+                print(output.shape)
 
                 labels_size = torch.tensor(len(labels), device=get_platform().torch_device)
                 example_count += labels_size
+                print('1')
                 total_loss += model.loss_criterion(output, labels) * labels_size
+                print('2')                
                 total_correct += correct(labels, output)
+                print('3')
 
         # Share the information if distributed.
         if get_platform().is_distributed:
+            print('start')
             torch.distributed.reduce(total_loss, 0, op=torch.distributed.ReduceOp.SUM)
             torch.distributed.reduce(total_correct, 0, op=torch.distributed.ReduceOp.SUM)
             torch.distributed.reduce(example_count, 0, op=torch.distributed.ReduceOp.SUM)
-
+        print('flag')
         print(total_loss.item())
         print(total_loss)
 
