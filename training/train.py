@@ -58,9 +58,6 @@ def train(
     if not get_platform().exists(output_location) and get_platform().is_primary_process:
         get_platform().makedirs(output_location)
 
-    print(get_platform().is_distributed)
-    print(get_platform().is_parallel)
-
     # Get the optimizer and learning rate schedule.
     model.to(get_platform().torch_device)
     optimizer = optimizers.get_optimizer(training_hparams, model)
